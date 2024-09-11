@@ -22,3 +22,21 @@ function isValid(s: string): boolean {
     return openBrackets.length == 0;
 
 };
+
+function isValid_solution2(s: string): boolean {
+    const map = new Map([
+        ['(', ')'],
+        ['{', '}'],
+        ['[', ']'],
+    ])
+
+    const stack: string[] = [];
+    for(let char of s) {
+        if (map.has(char)) {
+            stack.push(map.get(char) ?? '')
+        } else {
+            if(stack.pop() !== char) return false
+        }
+    }
+    return stack.length == 0;
+};
